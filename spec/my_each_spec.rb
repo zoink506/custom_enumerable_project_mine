@@ -11,6 +11,7 @@ RSpec.describe Array do
         my_each_results = array.my_each do |_element|
           # This should return the original array
           # no matter the contents of the block
+          p _element
         end
 
         expect(my_each_results).to eq(array)
