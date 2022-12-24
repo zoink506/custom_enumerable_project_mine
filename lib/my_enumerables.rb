@@ -96,6 +96,16 @@ class Array
     return return_array
   end
 
+  def my_inject(initial_value) # same as Array.reduce
+    sum = initial_value
+    i = 0
+    while i < self.length
+      sum = yield(sum, self[i])
+      i += 1
+    end
+    return sum
+  end
+
 end
 
-p [5, 8, 2, 6, 7, 4].my_map(&:to_s)
+p [3, 3, 3].my_inject(6) { |sum, value| sum + value }
