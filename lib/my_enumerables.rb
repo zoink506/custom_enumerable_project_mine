@@ -17,5 +17,16 @@ class Array
 
     return self
   end
-  
+
+  def my_each_with_index
+    i = 0
+    while i < self.length
+      yield(self[i], i)
+      i += 1
+    end
+
+    return self
+  end
 end
+
+p [1, 2, 3].my_each_with_index { |value, index| puts "value: #{value}, index: #{index}" }
