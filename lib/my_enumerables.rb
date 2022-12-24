@@ -83,6 +83,19 @@ class Array
       return self.length
     end
   end
+
+  def my_map
+    return_array = []
+    i = 0
+    while i < self.length
+      block_value = yield(self[i])
+      return_array << block_value
+      i += 1
+    end
+
+    return return_array
+  end
+
 end
 
-p [5, 8, 2, 6, 7, 4].my_count { |value| value > 5 }
+p [5, 8, 2, 6, 7, 4].my_map(&:to_s)
