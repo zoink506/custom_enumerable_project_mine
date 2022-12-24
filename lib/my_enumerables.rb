@@ -35,6 +35,7 @@ class Array
       return_array << self[i] if yield(self[i])
       i += 1
     end
+
     return return_array
   end
 
@@ -48,7 +49,40 @@ class Array
     return true
   end
 
+  def my_any?
+    i = 0
+    while i < self.length
+      return true if yield(self[i])
+      i += 1
+    end
+
+    return false
+  end
+
+  def my_none?
+    i = 0
+    while i < self.length
+      return false if yield(self[i]) 
+
+      i += 1
+    end
+
+    return true
+  end
+
+  def my_count
+    if block_given?
+      counter = 0
+      i = 0
+      while i < self.length
+        counter += 1 if yield(self[i])
+        i += 1
+      end
+      return counter
+    else
+      return self.length
+    end
+  end
 end
 
-p [1, 2, 3, 4].my_all? { |value| value < 5 }
-
+p [5, 8, 2, 6, 7, 4].my_count { |value| value > 5 }
